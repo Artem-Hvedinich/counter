@@ -1,11 +1,18 @@
-import React from "react";
+import React, {ChangeEvent, useState} from "react";
 
-type NumberPropsType = {
-    classNumber: () => "Number" | "NumberRED"
-    number: number
+type ValuePropsType = {
+    title: string
+    onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
+    value: number
 }
 
-export const Number = (props: NumberPropsType) =>
-    <div className={props.classNumber()}>
-        {props.number}
-    </div>
+
+export const Value: React.FC<ValuePropsType> = ({title, onChangeHandler, value}) => {
+
+    return (
+        <div className='value'>
+            <p>{title}</p>
+            <input value={value} type={"number"} className='inputClass' onChange={onChangeHandler}/>
+        </div>
+    )
+}

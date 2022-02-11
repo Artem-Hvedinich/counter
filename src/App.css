@@ -1,38 +1,87 @@
 .App {
-  text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.blockApp {
+    background-color: rgba(73, 72, 72, 0.35);
+    border: solid 2px #1a6f83;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.valueBlock {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 200px;
+    height: 80px;
+    border: solid 2px #1a6f83;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    color: #1a6f83;
 }
 
-.App-link {
-  color: #61dafb;
+.inputClass {
+    width: 100px;
+    height: 18px;
+    border: solid 2px #1a6f83;
+    border-radius: 5px;
+    background-color: rgba(72, 209, 204, 0.3);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+button {
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #1a6f83;
+    border-radius: 5px;
+    border: 2px solid #037281;
 }
+
+button:active {
+    background-color: #055059;
+}
+
+.blockButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: solid 2px #1a6f83;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.Number,
+.NumberRED,
+.NoValid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    min-width: 200px;
+    min-height: 100px;
+    border: 2px solid #1a6f83;
+    border-radius: 5px;
+    color: #037281;
+}
+
+.NumberRED,
+.NoValid {
+    color: #8f0000;
+}
+
+
