@@ -17,7 +17,6 @@ const App = () => {
         if (maxValueAsString) {
             setMaxValue(JSON.parse(maxValueAsString))
         }
-
         let startValueAsString = localStorage.getItem('counterStartValue')
         if (startValueAsString) {
             setStartValue(JSON.parse(startValueAsString))
@@ -27,6 +26,8 @@ const App = () => {
             setNumber(JSON.parse(numberAsString))
         }
     }, [])
+
+
     useEffect(() => {
         localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
     }, [maxValue])
@@ -78,7 +79,7 @@ const App = () => {
                     <Value value={maxValue} title='max value:' onChangeHandler={onChangeHandlerMax}/>
                     <Value value={startValue} title='start value:' onChangeHandler={onChangeHandlerStart}/>
                 </div>
-                <div className='blockButton'>
+                <div className='block_button'>
                     <Button onClickHandler={addSet}
                             disabledHandler={disabled}
                             title="Set"
