@@ -49,7 +49,6 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
 
 
     return (
-        <div className="App">
             <div className='blockApp'>
                 {content()}
                 <div className='blockButton'>
@@ -65,6 +64,5 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
                     />
                 </div>
             </div>
-        </div>
     )
 }
