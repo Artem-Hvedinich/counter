@@ -24,7 +24,6 @@ export const OnePageCounter = (props: CounterPropsType) => {
                                 onChangeHandlerStart={props.onChangeHandlerStart}
                                 addSet={newAddSet} maxValue={props.maxValue}
                                 startValue={props.startValue} disabled={props.disabled}
-
                     />
                     :
                     <CounterBlock addReset={props.addReset}

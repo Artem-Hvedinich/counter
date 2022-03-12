@@ -47,8 +47,19 @@
     background-color: rgba(72, 209, 204, 0.3);
 }
 
+.inputRED {    width: 150px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #717772;
+    border: solid 2px #1a6f83;
+    border-radius: 5px;
+    background-color: #8f0000;
+}
 
-button {
+
+.button {
     font-size: 25px;
     font-weight: bold;
     background-color: #1a6f83;
@@ -56,7 +67,7 @@ button {
     border: 2px solid #037281;
 }
 
-button:active {
+.button:active {
     background-color: #055059;
 }
 

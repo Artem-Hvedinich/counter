@@ -2,6 +2,7 @@ import React from "react";
 import {Number} from "./Number";
 import {Button} from "./Button";
 import {PATH} from "../App";
+import {useLocation} from "react-router-dom";
 
 export type CounterBlockPropsType = {
     addInc: () => void
@@ -12,6 +13,7 @@ export type CounterBlockPropsType = {
     number: number
     arrSet?: () => void
 }
+
 export const CounterBlock: React.FC<CounterBlockPropsType> = ({
                                                                   addInc,
                                                                   addReset,
@@ -28,14 +30,12 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
         }
         return !disabled
     }
-
     const disabledReset = () => {
         if (disabled) {
             return number <= startValue
         }
         return !disabled
     }
-
     const content = () => {
         if (maxValue <= startValue) {
             return <div className={'NoValid'}>'Is not valid'</div>
@@ -51,9 +51,10 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
             />
         }
     }
+    const buttonFilter = useLocation()
 
     const buttonContent = () => {
-        if (!PATH.OnePageCounter) {
+        if (buttonFilter.pathname === PATH.OpenCounter) {
             return (
                 <div className={'blockApp'}>
                     {content()}
@@ -69,7 +70,8 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
                     </div>
                 </div>
             )
-        } else {
+        }
+        if (buttonFilter.pathname === PATH.OnePageCounter) {
             return (
                 <div className={'blockApp'}>
                     {content()}
