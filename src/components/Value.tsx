@@ -12,7 +12,7 @@ export const Value: React.FC<ValuePropsType> = ({title, onChangeHandler, value})
     return (
         <div className='value'>
             <p>{title}</p>
-            <input value={value} type={"number"} className='inputClass' onChange={onChangeHandler}/>
+            <input value={value} type={"number"} className={`inputClass`} onChange={onChangeHandler}/>
         </div>
     )
 }

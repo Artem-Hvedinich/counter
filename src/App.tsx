@@ -1,12 +1,27 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import './App.css';
-import {BlockValue} from "./components/BlockValue";
-import {CounterBlock} from "./components/CounterBlock";
+import {Navigate, Route, Routes} from 'react-router-dom';
+import OpenCounter from "./OpenCounter/OpenCounter";
+import {OnePageCounter} from "./OnePageCounter/OnePageCounter";
+import {PathButton} from "./components/FooterButton/PathButton";
 
+export const PATH = {
+    OpenCounter: '/openCounter',
+    OnePageCounter: '/onePageCounter'
+}
 
-export type ButtonsType = 'set' | 'inc' | 'reset'
+export type CounterPropsType = {
+    onChangeHandlerMax: (e: ChangeEvent<HTMLInputElement>) => void
+    onChangeHandlerStart: (e: ChangeEvent<HTMLInputElement>) => void
+    addSet: () => void
+    addReset: () => void
+    addInc: () => void
+    maxValue: number
+    startValue: number
+    disabled: boolean
+    number: number
+}
 
-const App = () => {
+export const App = () => {
     const [number, setNumber] = useState<number>(0)
     const [disabled, setDisabled] = useState(false)
     const [maxValue, setMaxValue] = useState<number>(0)
@@ -54,25 +69,26 @@ const App = () => {
     const addInc = () => number < maxValue && setNumber(number + 1)
     const addReset = () => setNumber(startValue)
 
-
     return (
-        <div className="App">
+        <div>
+            <PathButton/>
+            <Routes>
+                <Route path={'*'} element={<Navigate to={PATH.OnePageCounter}/>}/>
+                <Route path={PATH.OpenCounter}
+                       element={<OpenCounter onChangeHandlerMax={onChangeHandlerMax}
+                                             onChangeHandlerStart={onChangeHandlerStart} addSet={addSet}
+                                             addReset={addReset} addInc={addInc} maxValue={maxValue}
+                                             startValue={startValue} disabled={disabled} number={number}
 
-            <BlockValue onChangeHandlerMax={onChangeHandlerMax}
-                        onChangeHandlerStart={onChangeHandlerStart}
-                        addSet={addSet} maxValue={maxValue} startValue={startValue}
-                        disabled={disabled}
-            />
-            <CounterBlock addReset={addReset}
-                          addInc={addInc}
-                          maxValue={maxValue}
-                          startValue={startValue}
-                          disabled={disabled}
-                          number={number}
-            />
+                       />}/>
+                <Route path={PATH.OnePageCounter}
+                       element={<OnePageCounter onChangeHandlerMax={onChangeHandlerMax}
+                                                onChangeHandlerStart={onChangeHandlerStart} addSet={addSet}
+                                                addReset={addReset} addInc={addInc} maxValue={maxValue}
+                                                startValue={startValue} disabled={disabled} number={number}
+
+                       />}/> </Routes>
         </div>
-    )
-}
-
-export default App;
+    );
+};
 

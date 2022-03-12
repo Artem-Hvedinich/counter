@@ -11,6 +11,8 @@ export type BlockValuePropsType = {
     disabled: boolean
 }
 export const BlockValue = (props: BlockValuePropsType) => {
+
+
     return (
         <div>
             <div className='blockApp'>
