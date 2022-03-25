@@ -3,52 +3,48 @@ import {Number} from "./Number";
 import {Button} from "./Button";
 import {PATH} from "../App";
 import {useLocation} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../state/store";
+import {StateType} from "../state/openCounterReducer/open-reducer";
 
 export type CounterBlockPropsType = {
     addInc: () => void
     addReset: () => void
-    maxValue: number
-    startValue: number
-    disabled: boolean
-    number: number
     arrSet?: () => void
 }
 
 export const CounterBlock: React.FC<CounterBlockPropsType> = ({
                                                                   addInc,
                                                                   addReset,
-                                                                  maxValue,
-                                                                  startValue,
-                                                                  disabled,
-                                                                  number,
                                                                   arrSet
                                                               }) => {
-    const classNumber = () => number < maxValue ? 'Number' : 'NumberRED'
+    let open = useSelector<AppRootStateType, StateType>(state => state.open)
+    const classNumber = () => open.number < open.maxValue ? 'Number' : 'NumberRED'
     const disabledInc = () => {
-        if (disabled) {
-            return number >= maxValue
+        if (open.disabled) {
+            return open.number >= open.maxValue
         }
-        return !disabled
+        return !open.disabled
     }
     const disabledReset = () => {
-        if (disabled) {
-            return number <= startValue
+        if (open.disabled) {
+            return open.number <= open.startValue
         }
-        return !disabled
+        return !open.disabled
     }
 
     const content = () => {
-        if (maxValue <= startValue) {
+        if (open.maxValue <= open.startValue) {
             return <div className={'NoValid'}>'Is not valid'</div>
         }
-        if (startValue < 0) {
+        if (open.startValue < 0) {
             return <div className={'NoValid'}>'Start value no valid'</div>
         }
-        if (!disabled) {
+        if (!open.disabled) {
             return <div className={'NoValid'}>'Enter set'</div>
-        } else {
+        } else if (open.disabled) {
             return <Number classNumber={classNumber}
-                           number={number}
+                           number={open.number}
             />
         }
     }

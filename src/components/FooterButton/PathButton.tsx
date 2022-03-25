@@ -9,7 +9,6 @@ export const PathButton = () => {
         <div className={s.style}>
             <NavLink to={PATH.OnePageCounter} className={setActive}>OnePage</NavLink>
             <NavLink to={PATH.OpenCounter} className={setActive}>Open</NavLink>
-
         </div>
     );
 };
