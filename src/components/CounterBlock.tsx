@@ -36,6 +36,7 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
         }
         return !disabled
     }
+
     const content = () => {
         if (maxValue <= startValue) {
             return <div className={'NoValid'}>'Is not valid'</div>
@@ -85,7 +86,6 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
                                 title="Reset"
                         />
                         <Button onClickHandler={arrSet}
-                                disabledHandler={false}
                                 title="Set"
                         />
                     </div>

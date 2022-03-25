@@ -65,6 +65,7 @@ export const App = () => {
         setDisabled(true)
     }
 
+
 //Logic of count block
     const addInc = () => number < maxValue && setNumber(number + 1)
     const addReset = () => setNumber(startValue)

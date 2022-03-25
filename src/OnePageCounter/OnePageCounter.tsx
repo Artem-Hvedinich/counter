@@ -9,7 +9,6 @@ export const OnePageCounter = (props: CounterPropsType) => {
     const [arr, setArr] = useState(false)
     const arrSet = () => {
         setArr(!arr)
-        console.log(arr)
     }
 
     const newAddSet = () => {
