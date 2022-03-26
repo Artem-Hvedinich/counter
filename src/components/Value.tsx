@@ -10,10 +10,12 @@ type ValuePropsType = {
 
 export const Value: React.FC<ValuePropsType> = ({title, onChangeHandler, value, className}) => {
 
+    const newValue = isNaN(value) ? 0 : value
+
     return (
         <div className='value'>
             <p>{title}</p>
-            <input  value={value} type={"number"} className={className()} onChange={onChangeHandler}/>
+            <input value={newValue} type={"number"} className={className()} onChange={onChangeHandler}/>
         </div>
     )
 }

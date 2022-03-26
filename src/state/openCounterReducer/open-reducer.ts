@@ -1,16 +1,15 @@
+const initialState = {
+    number: 0,
+    maxValue: (localStorage.getItem('counterMaxValue') === null ? 5 : Number(localStorage.getItem('counterMaxValue'))) as number,
+    startValue: (localStorage.getItem('counterStartValue') !== null ? Number(localStorage.getItem('counterStartValue')) : 0) as number,
+    disabled: false
+}
+
 export type StateType = {
     number: number
     maxValue: number
     startValue: number
     disabled: boolean
-}
-
-
-const initialState: StateType = {
-    number: 0,
-    maxValue: 5,
-    startValue: 0,
-    disabled: false
 }
 
 export const openReducer = (state = initialState, action: ActionType): StateType => {
@@ -25,7 +24,6 @@ export const openReducer = (state = initialState, action: ActionType): StateType
             return {...state, startValue: action.startValue}
         }
         case 'CHANGE_DISABLED_BUTTON': {
-            console.log(action)
             return {...state, disabled: action.disabled}
         }
         default:

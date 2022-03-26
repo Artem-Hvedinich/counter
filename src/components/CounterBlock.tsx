@@ -5,7 +5,7 @@ import {PATH} from "../App";
 import {useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../state/store";
-import {StateType} from "../state/openCounterReducer/open-reducer";
+import {changeMaxValue, changeNumberInc, StateType} from "../state/openCounterReducer/open-reducer";
 
 export type CounterBlockPropsType = {
     addInc: () => void
@@ -19,6 +19,8 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
                                                                   arrSet
                                                               }) => {
     let open = useSelector<AppRootStateType, StateType>(state => state.open)
+    const dispatch = useDispatch()
+
     const classNumber = () => open.number < open.maxValue ? 'Number' : 'NumberRED'
     const disabledInc = () => {
         if (open.disabled) {
@@ -42,7 +44,8 @@ export const CounterBlock: React.FC<CounterBlockPropsType> = ({
         }
         if (!open.disabled) {
             return <div className={'NoValid'}>'Enter set'</div>
-        } else if (open.disabled) {
+        }
+         else if (open.disabled) {
             return <Number classNumber={classNumber}
                            number={open.number}
             />

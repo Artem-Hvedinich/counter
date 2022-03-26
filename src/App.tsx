@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback, useEffect} from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import OpenCounter from "./components/OpenCounter/OpenCounter";
 import {OnePageCounter} from "./components/OnePageCounter/OnePageCounter";
@@ -23,39 +23,12 @@ export type CounterPropsType = {
     addSet: () => void
     addReset: () => void
     addInc: () => void
-    maxValue: number
-    startValue: number
-    disabled: boolean
-    number: number
 }
 
 export const App = () => {
     let open = useSelector<AppRootStateType, StateType>(state => state.open)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        let maxValueAsString = localStorage.getItem('counterMaxValue')
-        if (maxValueAsString) {
-            dispatch(changeMaxValue(JSON.parse(maxValueAsString)))
-        }
-        let startValueAsString = localStorage.getItem('counterStartValue')
-        if (startValueAsString) {
-            dispatch(changeStartValue(JSON.parse(startValueAsString)))
-        }
-        let numberAsString = localStorage.getItem('counterNumberValue')
-        if (numberAsString) {
-            dispatch(changeNumberInc(JSON.parse(numberAsString)))
-        }
-    }, [])
-    useEffect(() => {
-        localStorage.setItem('counterMaxValue', JSON.stringify(open.maxValue))
-    }, [open.maxValue])
-    useEffect(() => {
-        localStorage.setItem('counterStartValue', JSON.stringify(open.startValue))
-    }, [open.startValue])
-    useEffect(() => {
-        localStorage.setItem('counterNumberValue', JSON.stringify(open.number))
-    }, [open.number])
 
 //Logic of value block
     const onChangeHandlerMax = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -84,17 +57,12 @@ export const App = () => {
                 <Route path={PATH.OpenCounter}
                        element={<OpenCounter onChangeHandlerMax={onChangeHandlerMax} addInc={addInc}
                                              onChangeHandlerStart={onChangeHandlerStart} addSet={addSet}
-                                             addReset={addReset} maxValue={open.maxValue}
-                                             startValue={open.startValue} disabled={open.disabled}
-                                             number={open.number}
-
+                                             addReset={addReset}
                        />}/>
                 <Route path={PATH.OnePageCounter}
                        element={<OnePageCounter onChangeHandlerMax={onChangeHandlerMax} addInc={addInc}
                                                 onChangeHandlerStart={onChangeHandlerStart} addSet={addSet}
-                                                addReset={addReset} maxValue={open.maxValue}
-                                                startValue={open.startValue} disabled={open.disabled}
-                                                number={open.number}
+                                                addReset={addReset}
 
                        />}/>
             </Routes>
